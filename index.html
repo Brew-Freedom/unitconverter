@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Converter: km ↔ mi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+      background: #f5f5f5;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .converter {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
 
+  <h1>Unit Converter: km ↔ mi</h1>
+  <div class="converter">
+    <input type="number" id="valueInput" placeholder="Enter value" />
+    
+    <select id="conversionType">
+      <option value="kmToMi">Kilometers → Miles</option>
+      <option value="miToKm">Miles → Kilometers</option>
+    </select>
+    
+    <button onclick="convert()">Convert</button>
+    
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function convert() {
+      const value = parseFloat(document.getElementById('valueInput').value);
+      const type = document.getElementById('conversionType').value;
+      let resultText = '';
+
+      if (isNaN(value)) {
+        resultText = 'Please enter a valid number.';
+      } else {
+        if (type === 'kmToMi') {
+          const miles = value * 0.621371;
+          resultText = `${value} km ≈ ${miles.toFixed(3)} mi`;
+        } else if (type === 'miToKm') {
+          const km = value * 1.60934;
+          resultText = `${value} mi ≈ ${km.toFixed(3)} km`;
+        }
+      }
+
+      document.getElementById('result').innerText = resultText;
+    }
+  </script>
+
+</body>
+</html>
